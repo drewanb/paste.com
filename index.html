@@ -201,6 +201,10 @@
     .menu-card-body p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
     .menu-card-tag { display: inline-block; margin-top: 14px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--primary); }
 
+    /* ── CATERING PREVIEW ── */
+    .catering-preview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .catering-event-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
     /* ── GALLERY ── */
     .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 0; border-radius: var(--radius); overflow: hidden; }
     .gallery-item { aspect-ratio: 4/3; overflow: hidden; }
@@ -255,10 +259,13 @@
       .gallery-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
       .footer-desc { max-width: 100%; }
+      .catering-preview-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+      .catering-event-cards { grid-template-columns: repeat(4, 1fr) !important; gap: 10px; }
     }
     @media (max-width: 480px) {
       .section { padding: 64px 16px; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
+      .catering-event-cards { grid-template-columns: repeat(2, 1fr) !important; }
     }
 
     /* ── WHATSAPP FLOAT ── */
@@ -482,7 +489,7 @@
 
   <!-- CATERING PREVIEW -->
   <section class="section section-dark">
-    <div class="container" style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;">
+    <div class="container catering-preview-grid">
       <div>
         <span class="section-label" style="color:rgba(255,255,255,0.45);">Catering Services</span>
         <h2 class="section-title" style="color:#fff;">We Cater Your Events</h2>
@@ -492,7 +499,7 @@
           <a href="https://wa.me/12143979857" target="_blank" rel="noopener noreferrer" class="btn btn-outline-white">Request a Quote</a>
         </div>
       </div>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+      <div class="catering-event-cards">
         <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:24px; text-align:center;">
           <div style="font-size:2rem; margin-bottom:8px;">👑</div>
           <div style="font-family:var(--ff-head); color:#fff; font-size:0.95rem;">Quinceañeras</div>
