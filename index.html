@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://static.hungerrush.com" crossorigin />
   <link rel="preload" as="image" href="assets/hero-poster.jpg" />
-  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <meta name="theme-color" content="#C92B1F" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet" />
+  <meta name="theme-color" content="#C8793A" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" /><!-- REVISAR: crear 180×180px -->
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" /><!-- REVISAR: crear favicon -->
   <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -108,22 +108,21 @@
   </script>
   <style>
     :root {
-      --primary: #C92B1F;
-      --primary-dark: #9e1b10;
-      --accent: #2652EB;
-      --dark: #180604;
-      --text: #2a1a18;
-      --muted: #7a6562;
-      --bg: #ffffff;
-      --bg-warm: #FFF8F5;
-      --border: #f0e5e3;
-      --shadow: 0 4px 24px rgba(0,0,0,0.10);
-      --shadow-lg: 0 8px 40px rgba(0,0,0,0.14);
-      --radius: 14px;
+      --primary: #C8793A;
+      --primary-dark: #A85E28;
+      --dark: #1C1917;
+      --text: #292524;
+      --muted: #78716C;
+      --bg: #FFFFFF;
+      --bg-warm: #FAF6F0;
+      --border: #E7DDD4;
+      --shadow: 0 2px 16px rgba(0,0,0,0.06);
+      --shadow-lg: 0 8px 40px rgba(0,0,0,0.10);
+      --radius: 8px;
       --transition: 0.25s ease;
       --max: 1200px;
-      --ff-head: 'Permanent Marker', cursive;
-      --ff-body: 'Nunito', sans-serif;
+      --ff-head: 'Playfair Display', serif;
+      --ff-body: 'DM Sans', sans-serif;
     }
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -132,9 +131,9 @@
     a { text-decoration: none; color: inherit; }
 
     /* ── BUTTONS ── */
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 50px; font-family: var(--ff-body); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all var(--transition); border: none; white-space: nowrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 6px; font-family: var(--ff-body); font-size: 1rem; font-weight: 600; cursor: pointer; transition: all var(--transition); border: none; white-space: nowrap; }
     .btn-primary { background: var(--primary); color: #fff; }
-    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(201,43,31,0.40); }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(200,121,58,0.35); }
     .btn-outline-white { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.8); }
     .btn-outline-white:hover { background: #fff; color: var(--primary); }
     .btn-outline-red { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
@@ -147,9 +146,9 @@
     .nav-logo { height: 50px; width: auto; object-fit: contain; }
     .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
     .nav-links a { font-weight: 700; font-size: 0.9rem; color: var(--text); padding: 8px 14px; border-radius: 8px; transition: all var(--transition); }
-    .nav-links a:hover, .nav-links a.active { color: var(--primary); background: rgba(201,43,31,0.07); }
+    .nav-links a:hover, .nav-links a.active { color: var(--primary); background: rgba(200,121,58,0.07); }
     .nav-phone { color: var(--primary) !important; font-weight: 800 !important; }
-    .nav-order { background: var(--primary) !important; color: #fff !important; border-radius: 50px !important; padding: 10px 22px !important; }
+    .nav-order { background: var(--primary) !important; color: #fff !important; border-radius: 6px !important; padding: 10px 22px !important; }
     .nav-order:hover { background: var(--primary-dark) !important; color: #fff !important; }
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
     .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); transition: all var(--transition); border-radius: 2px; }
@@ -158,7 +157,7 @@
     .scroll-video-hero { height: 600vh; position: relative; }
     .scroll-video-sticky { position: sticky; top: 0; height: 100vh; width: 100%; overflow: hidden; }
     .scroll-video-sticky video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
-    .hero-content { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2; background: rgba(24,6,4,0.60); color: #fff; text-align: center; padding: 24px; }
+    .hero-content { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2; background: rgba(28,25,23,0.52); color: #fff; text-align: center; padding: 24px; }
     .hero-logo { height: 110px; width: auto; object-fit: contain; margin: 0 auto 24px; filter: drop-shadow(0 4px 16px rgba(0,0,0,0.5)); }
     .hero-title { font-family: var(--ff-head); font-size: clamp(2.4rem, 6vw, 4rem); color: #fff; line-height: 1.1; margin-bottom: 16px; text-shadow: 0 2px 12px rgba(0,0,0,0.5); }
     .hero-sub { font-size: clamp(1rem, 2.5vw, 1.25rem); color: rgba(255,255,255,0.88); margin-bottom: 36px; font-weight: 600; letter-spacing: 0.5px; }
@@ -175,7 +174,7 @@
     .section-warm { background: var(--bg-warm); }
     .section-dark { background: var(--dark); }
     .container { max-width: var(--max); margin: 0 auto; }
-    .section-label { display: inline-block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px; color: var(--primary); margin-bottom: 12px; }
+    .section-label { display: inline-block; font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 3px; color: var(--primary); margin-bottom: 14px; }
     .section-title { font-family: var(--ff-head); font-size: clamp(1.8rem, 3.5vw, 2.8rem); color: var(--dark); margin-bottom: 16px; line-height: 1.2; }
     .section-sub { font-size: 1.05rem; color: var(--muted); max-width: 580px; line-height: 1.75; }
     .center { text-align: center; }
@@ -185,7 +184,7 @@
     .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px; margin-top: 56px; }
     .why-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 36px 28px; transition: all var(--transition); }
     .why-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: transparent; }
-    .why-icon { width: 60px; height: 60px; background: rgba(201,43,31,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 1.8rem; }
+    .why-icon { width: 56px; height: 56px; background: rgba(200,121,58,0.08); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 1.8rem; }
     .why-card h3 { font-family: var(--ff-head); font-size: 1.2rem; color: var(--dark); margin-bottom: 10px; }
     .why-card p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; }
 
