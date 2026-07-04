@@ -140,9 +140,11 @@
     .btn-outline-red:hover { background: var(--primary); color: #fff; transform: translateY(-2px); }
 
     /* ── HEADER ── */
-    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: transparent; transition: background 0.35s ease, box-shadow 0.35s ease; }
-    header.scrolled { background: #021E60; box-shadow: 0 2px 24px rgba(2,30,96,0.45); }
-    .nav { max-width: var(--max); margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; }
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: transparent; transition: background 0.35s ease; }
+    header.scrolled { background: transparent; }
+    .nav { max-width: var(--max); margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 12px; transition: all 0.4s ease; }
+    header.scrolled .nav { background: #021E60; border-radius: 50px; margin: 12px auto; padding: 0 28px; max-width: 860px; height: 54px; box-shadow: 0 4px 32px rgba(2,30,96,0.45); gap: 8px; }
+    header.scrolled .nav-phone { display: none; }
     .nav-logo-link { display: flex; align-items: center; flex-shrink: 0; }
     .nav-logo { height: 50px; width: auto; object-fit: contain; filter: brightness(0) invert(1); opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
     header.scrolled .nav-logo { opacity: 1; pointer-events: auto; }
@@ -252,6 +254,8 @@
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
+      header.scrolled .nav { border-radius: 0; margin: 0 auto; max-width: 100%; height: 64px; padding: 0 16px; box-shadow: 0 2px 20px rgba(2,30,96,0.4); }
+      header.scrolled .nav-phone { display: flex; }
       .hamburger { display: flex; }
       .nav-links { display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0; background: #fff; flex-direction: column; padding: 32px 24px; gap: 6px; box-shadow: 0 8px 40px rgba(0,0,0,0.15); overflow-y: auto; }
       .nav-links.open { display: flex; }
