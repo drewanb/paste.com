@@ -173,6 +173,11 @@
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
     .hero-badge { margin-top: 32px; background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; padding: 10px 24px; color: #fff; font-size: 0.85rem; font-weight: 700; white-space: nowrap; }
 
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease var(--reveal-delay, 0s), transform 0.7s ease var(--reveal-delay, 0s); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; transition: none !important; } }
+
     /* ── SECTIONS COMMON ── */
     .section { padding: 88px 24px; }
     .section-warm { background: var(--bg-warm); }
@@ -332,27 +337,27 @@
   <section class="section section-warm">
     <div class="container">
       <div class="center">
-        <span class="section-label">Why Tu Pastelito</span>
-        <h2 class="section-title">Authentic. Fresh. Venezuelan.</h2>
-        <p class="section-sub">Real Venezuelan street food made with tradition, served in the heart of Dallas.</p>
+        <span class="section-label reveal">Why Tu Pastelito</span>
+        <h2 class="section-title reveal">Authentic. Fresh. Venezuelan.</h2>
+        <p class="section-sub reveal">Real Venezuelan street food made with tradition, served in the heart of Dallas.</p>
       </div>
-      <div class="why-grid">
-        <div class="why-card">
+      <div class="why-grid stagger">
+        <div class="why-card reveal">
           <div class="why-icon">🇻🇪</div>
           <h3>100% Venezuelan</h3>
           <p>Authentic recipes straight from Venezuela — Tequeños, Arepas, Empanadas, Morocho, and more. No shortcuts, no compromises.</p>
         </div>
-        <div class="why-card">
+        <div class="why-card reveal">
           <div class="why-icon">⏰</div>
           <h3>Open 7 Days a Week</h3>
           <p>We're here for you every single day from 6:00 AM to 10:00 PM. Whether it's breakfast or a late-night craving, we've got you.</p>
         </div>
-        <div class="why-card">
+        <div class="why-card reveal">
           <div class="why-icon">🛍️</div>
           <h3>Easy Online Ordering</h3>
           <p>Skip the line. Order online in seconds and pick up your food fresh and ready. Fast, simple, delicious.</p>
         </div>
-        <div class="why-card">
+        <div class="why-card reveal">
           <div class="why-icon">⭐</div>
           <h3>5-Star Experience</h3>
           <p>"Best Venezuelan food in all of Dallas" — voted by our customers. Friendly staff, incredible food, every single time.</p>
@@ -365,12 +370,12 @@
   <section class="section">
     <div class="container">
       <div>
-        <span class="section-label">Our Menu</span>
-        <h2 class="section-title">Venezuelan Street Food Favorites</h2>
-        <p class="section-sub">Everything is made fresh, full of flavor, and authentically Venezuelan. Order online for carryout today.</p>
+        <span class="section-label reveal">Our Menu</span>
+        <h2 class="section-title reveal">Venezuelan Street Food Favorites</h2>
+        <p class="section-sub reveal">Everything is made fresh, full of flavor, and authentically Venezuelan. Order online for carryout today.</p>
       </div>
-      <div class="menu-grid">
-        <div class="menu-card">
+      <div class="menu-grid stagger">
+        <div class="menu-card reveal">
           <div class="menu-card-img">
             <img src="assets/cachapa-1.jpg" alt="Cachapa venezolana — Tu Pastelito Dallas TX" width="1024" height="600" loading="lazy" decoding="async">
           </div>
@@ -380,7 +385,7 @@
             <span class="menu-card-tag">Must Try</span>
           </div>
         </div>
-        <div class="menu-card">
+        <div class="menu-card reveal">
           <div class="menu-card-img">
             <img src="https://static.hungerrush.com/menufy/width=1024,height=600,fit=scale-down,format=auto/638483589489303683+1403436.png" alt="Empanadas de pollo y carne — Tu Pastelito Dallas TX" width="1024" height="600" loading="lazy" decoding="async">
           </div>
@@ -390,7 +395,7 @@
             <span class="menu-card-tag">Fan Favorite</span>
           </div>
         </div>
-        <div class="menu-card">
+        <div class="menu-card reveal">
           <div class="menu-card-img">
             <img src="assets/pabellon.png" alt="Pabellón criollo venezolano — Tu Pastelito Dallas TX" width="1024" height="600" loading="lazy" decoding="async">
           </div>
@@ -400,7 +405,7 @@
             <span class="menu-card-tag">Classic</span>
           </div>
         </div>
-        <div class="menu-card">
+        <div class="menu-card reveal">
           <div class="menu-card-img">
             <img src="assets/pastelito-papa.webp" alt="Pastelito de Papa con queso — Tu Pastelito Dallas TX" width="1024" height="600" loading="lazy" decoding="async">
           </div>
@@ -410,7 +415,7 @@
             <span class="menu-card-tag">Traditional</span>
           </div>
         </div>
-        <div class="menu-card">
+        <div class="menu-card reveal">
           <div class="menu-card-img">
             <img src="assets/pan-morocho.jpg" alt="Pan Morocho venezolano — Tu Pastelito Dallas TX" width="1024" height="600" loading="lazy" decoding="async">
           </div>
@@ -437,20 +442,20 @@
   <!-- STATS -->
   <section class="section section-dark" style="padding: 0;">
     <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item">
+      <div class="stats-grid stagger">
+        <div class="stat-item reveal">
           <div class="stat-num">16h</div>
           <div class="stat-label">Open Daily</div>
         </div>
-        <div class="stat-item">
+        <div class="stat-item reveal">
           <div class="stat-num">7</div>
           <div class="stat-label">Days a Week</div>
         </div>
-        <div class="stat-item">
+        <div class="stat-item reveal">
           <div class="stat-num">★★★★★</div>
           <div class="stat-label">Customer Rated</div>
         </div>
-        <div class="stat-item">
+        <div class="stat-item reveal">
           <div class="stat-num">Dallas</div>
           <div class="stat-label">Far North TX</div>
         </div>
@@ -462,22 +467,22 @@
   <section class="section section-warm">
     <div class="container">
       <div class="center">
-        <span class="section-label">What People Say</span>
-        <h2 class="section-title">Our Customers Love Us</h2>
-        <p class="section-sub">Don't take our word for it — here's what our Dallas community has to say.</p>
+        <span class="section-label reveal">What People Say</span>
+        <h2 class="section-title reveal">Our Customers Love Us</h2>
+        <p class="section-sub reveal">Don't take our word for it — here's what our Dallas community has to say.</p>
       </div>
-      <div class="reviews-grid">
-        <div class="review-card">
+      <div class="reviews-grid stagger">
+        <div class="review-card reveal">
           <div class="review-stars">★★★★★</div>
           <p class="review-text">"Super great Venezuelan food! Best in town! To go or eating in! This place hits hard!!!"</p>
           <span class="review-author">— Benjamin R.</span>
         </div>
-        <div class="review-card">
+        <div class="review-card reveal">
           <div class="review-stars">★★★★★</div>
           <p class="review-text">"I always get the chicken and shredded beef empanadas. 😋 The staff is courteous and friendly. The food is delicious. Highly recommended!"</p>
           <span class="review-author">— Mark F.</span>
         </div>
-        <div class="review-card">
+        <div class="review-card reveal">
           <div class="review-stars">★★★★★</div>
           <p class="review-text">"The best Venezuelan food in all of Dallas."</p>
           <span class="review-author">— Ana F.</span>
@@ -589,6 +594,29 @@
       siteHeader.classList.toggle('scrolled', window.scrollY > 10);
     }, { passive: true });
     if (window.scrollY > 10) siteHeader.classList.add('scrolled');
+  </script>
+
+  <!-- SCROLL REVEAL: Intersection Observer -->
+  <script>
+    (function () {
+      // Asignar delays a hijos de .stagger
+      document.querySelectorAll('.stagger').forEach(parent => {
+        parent.querySelectorAll('.reveal').forEach((el, i) => {
+          el.style.setProperty('--reveal-delay', (i * 0.12) + 's');
+        });
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    })();
   </script>
 
   <script>
