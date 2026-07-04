@@ -307,10 +307,9 @@
     <video
       id="heroVideo"
       src="assets/hero-scrub2.mp4"
-      autoplay
       muted
-      loop
       playsinline
+      preload="auto"
     ></video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -586,6 +585,49 @@
       siteHeader.classList.toggle('scrolled', window.scrollY > 10);
     }, { passive: true });
     if (window.scrollY > 10) siteHeader.classList.add('scrolled');
+  </script>
+
+  <script>
+    (function () {
+      const video = document.getElementById('heroVideo');
+      const hero  = document.querySelector('.hero');
+      if (!video || !hero) return;
+
+      const isMobile      = window.matchMedia('(max-width: 768px)').matches;
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (isMobile || prefersReduced) {
+        video.autoplay = true;
+        video.loop = true;
+        video.play().catch(() => {});
+        return;
+      }
+
+      video.pause();
+      video.currentTime = 0;
+
+      let ready = false;
+      video.addEventListener('loadedmetadata', () => { ready = true; });
+      video.load();
+
+      let target = 0;
+      let pending = false;
+
+      hero.addEventListener('mousemove', (e) => {
+        if (!ready || !video.duration) return;
+        const rect = hero.getBoundingClientRect();
+        const progress = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        target = progress * video.duration;
+        if (!pending) {
+          pending = true;
+          requestAnimationFrame(() => {
+            pending = false;
+            if (video.fastSeek) video.fastSeek(target);
+            else video.currentTime = target;
+          });
+        }
+      });
+    })();
   </script>
 
 </body>
