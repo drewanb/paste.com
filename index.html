@@ -318,7 +318,7 @@
     <div class="hero-sticky">
     <video
       id="heroVideo"
-      src="assets/banner3.0.mp4"
+      src="assets/banner3.0-scrub.mp4"
       muted
       playsinline
       preload="auto"
@@ -672,21 +672,12 @@
       video.currentTime = 0;
       video.load();
 
-      let pending = false;
-
       window.addEventListener('scroll', () => {
         if (!video.duration) return;
         const scrollable = hero.offsetHeight - window.innerHeight;
         const scrolled   = Math.max(0, window.scrollY - hero.offsetTop);
         const progress   = Math.min(scrolled / scrollable, 1);
-
-        if (!pending) {
-          pending = true;
-          requestAnimationFrame(() => {
-            pending = false;
-            video.currentTime = progress * video.duration;
-          });
-        }
+        video.currentTime = progress * video.duration;
       }, { passive: true });
     })();
   </script>
