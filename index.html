@@ -380,20 +380,17 @@
 
     /* ── NEON SIGN — Why Tu Pastelito heading ── */
     .why-neon-wrap {
-      background:
-        linear-gradient(rgba(4,4,12,0.78), rgba(4,4,12,0.78)),
-        url('assets/banner-catering.png') center/cover no-repeat;
+      /* Comic image — no overlay, darkness comes from ::after */
+      background: url('assets/banner-catering.png') center/cover no-repeat;
       border-radius: 24px;
       padding: 56px 48px;
       margin-bottom: 56px;
       position: relative;
+      isolation: isolate; /* blend modes confined inside this box */
       border: 2px solid transparent;
-      background-clip: padding-box;
-      box-shadow:
-        inset 0 0 90px rgba(0,0,0,0.5),
-        0 32px 80px rgba(0,0,0,0.45);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
     }
-    /* Gradient border top→bottom: gold → blue → red (matches stacking order) */
+    /* Gradient border top→bottom: gold → blue → red */
     .why-neon-wrap::before {
       content: '';
       position: absolute;
@@ -401,24 +398,27 @@
       border-radius: 26px;
       background: linear-gradient(to bottom, #FFD700 0%, #2255DD 50%, #CC1F2D 100%);
       z-index: -1;
-      opacity: 0.6;
+      opacity: 0.55;
     }
-    /* Ambient glow — vertically positioned per word */
+    /* Dark overlay — animates away during each neon pulse, revealing the comic */
     .why-neon-wrap::after {
       content: '';
       position: absolute;
       inset: 0;
-      border-radius: 24px;
-      background:
-        radial-gradient(ellipse at 50% 22%, rgba(255,215,0,0.12) 0%, transparent 42%),
-        radial-gradient(ellipse at 50% 52%, rgba(34,85,221,0.12) 0%, transparent 42%),
-        radial-gradient(ellipse at 50% 82%, rgba(204,31,45,0.14) 0%, transparent 42%);
+      border-radius: 23px;
+      background: #020208;
+      animation: comicReveal 6s ease-in-out infinite;
       pointer-events: none;
       z-index: 0;
     }
+    /* Text sits above the dark overlay; screen blend lets neon glow PAINT the comic */
     .why-neon-wrap .section-label,
     .why-neon-wrap .section-title,
-    .why-neon-wrap .section-sub { position: relative; z-index: 1; }
+    .why-neon-wrap .section-sub {
+      position: relative;
+      z-index: 1;
+      mix-blend-mode: screen;
+    }
 
     /* Label — gold neon */
     .why-neon-wrap .section-label {
@@ -479,10 +479,35 @@
 
     .why-neon-wrap .section-sub { color: rgba(255,255,255,0.42); margin-top: 8px; }
 
+    /* Neon pulse — mostly off, brief bright bursts like a UV strobe */
     @keyframes neonFlicker {
-      0%, 17%, 21%, 24%, 52%, 56%, 100% { opacity: 1; filter: brightness(1); }
-      19%, 23%                          { opacity: 0.5; filter: brightness(0.22); }
-      54%                               { opacity: 0.65; filter: brightness(0.38); }
+      /* Dark base */
+      0%, 6%        { opacity: 0.08; filter: brightness(0.08); }
+      /* Pulse 1 */
+      8%, 12%       { opacity: 1;    filter: brightness(1.5); }
+      14%, 27%      { opacity: 0.08; filter: brightness(0.08); }
+      /* Pulse 2 */
+      29%, 33%      { opacity: 1;    filter: brightness(1.5); }
+      35%, 55%      { opacity: 0.08; filter: brightness(0.08); }
+      /* Pulse 3 — double stutter */
+      57%, 60%      { opacity: 1;    filter: brightness(1.5); }
+      62%, 64%      { opacity: 0.3;  filter: brightness(0.3); }
+      66%, 70%      { opacity: 1;    filter: brightness(1.5); }
+      /* Long dark */
+      72%, 100%     { opacity: 0.08; filter: brightness(0.08); }
+    }
+
+    /* Comic overlay lifts in sync — comic only visible when neon pulses */
+    @keyframes comicReveal {
+      0%, 6%        { opacity: 0.97; }   /* pitch black */
+      8%, 12%       { opacity: 0.02; }   /* FLASH — comic exposed */
+      14%, 27%      { opacity: 0.97; }
+      29%, 33%      { opacity: 0.02; }   /* FLASH */
+      35%, 55%      { opacity: 0.97; }
+      57%, 60%      { opacity: 0.02; }   /* FLASH */
+      62%, 64%      { opacity: 0.55; }   /* stutter */
+      66%, 70%      { opacity: 0.02; }   /* FLASH */
+      72%, 100%     { opacity: 0.97; }
     }
     @media (max-width: 768px) {
       .why-neon-wrap { padding: 40px 20px; margin-bottom: 40px; }
