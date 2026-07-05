@@ -666,8 +666,12 @@
       video.pause();
       video.currentTime = 0;
 
-      let ready = false;
-      video.addEventListener('loadedmetadata', () => { ready = true; });
+      // readyState >= 1 means metadata already loaded (preload="auto" fires early)
+      let ready = video.readyState >= 1;
+      if (!ready) {
+        video.addEventListener('loadedmetadata', () => { ready = true; }, { once: true });
+        video.addEventListener('canplay',         () => { ready = true; }, { once: true });
+      }
       video.load();
 
       let target = 0;
