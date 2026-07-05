@@ -380,13 +380,12 @@
 
     /* ── NEON SIGN — Why Tu Pastelito heading ── */
     .why-neon-wrap {
-      /* Comic image — no overlay, darkness comes from ::after */
-      background: url('assets/banner-catering.png') center/cover no-repeat;
+      background: #020208; /* pure dark — comic lives in .neon-comic-art */
       border-radius: 24px;
       padding: 56px 48px;
       margin-bottom: 56px;
       position: relative;
-      isolation: isolate; /* blend modes confined inside this box */
+      isolation: isolate;
       border: 2px solid transparent;
       box-shadow: 0 32px 80px rgba(0,0,0,0.5);
     }
@@ -400,23 +399,40 @@
       z-index: -1;
       opacity: 0.55;
     }
-    /* Dark overlay — animates away during each neon pulse, revealing the comic */
+    /* Three-color light source — pulses in sync with neon */
     .why-neon-wrap::after {
       content: '';
       position: absolute;
       inset: 0;
       border-radius: 23px;
-      background: #020208;
-      animation: comicReveal 6s ease-in-out infinite;
+      background:
+        radial-gradient(ellipse at 50% 22%, rgba(255,215,0,1) 0%, rgba(255,215,0,0) 52%),
+        radial-gradient(ellipse at 50% 52%, rgba(34,85,221,1) 0%, rgba(34,85,221,0) 52%),
+        radial-gradient(ellipse at 50% 82%, rgba(204,31,45,1)  0%, rgba(204,31,45,0)  52%);
+      opacity: 0;
+      animation: neonGlow 6s ease-in-out infinite;
       pointer-events: none;
-      z-index: 0;
+      z-index: 0; /* behind comic stencil */
     }
-    /* Text sits above the dark overlay; screen blend lets neon glow PAINT the comic */
+    /* Comic stencil: invert(1) flips B&W — ink=white, paper=black
+       multiply blend: white(ink) × light = light visible | black(paper) × light = black
+       Result: ONLY the drawn strokes glow in neon color */
+    .neon-comic-art {
+      position: absolute;
+      inset: 0;
+      border-radius: 22px;
+      background: url('assets/banner-catering.png') center/cover no-repeat;
+      filter: invert(1);
+      mix-blend-mode: multiply;
+      z-index: 1;
+      pointer-events: none;
+    }
+    /* Text above stencil — screen blend intensifies glow on ink areas */
     .why-neon-wrap .section-label,
     .why-neon-wrap .section-title,
     .why-neon-wrap .section-sub {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       mix-blend-mode: screen;
     }
 
@@ -497,17 +513,17 @@
       72%, 100%     { opacity: 0.08; filter: brightness(0.08); }
     }
 
-    /* Comic overlay lifts in sync — comic only visible when neon pulses */
-    @keyframes comicReveal {
-      0%, 6%        { opacity: 0.97; }   /* pitch black */
-      8%, 12%       { opacity: 0.02; }   /* FLASH — comic exposed */
-      14%, 27%      { opacity: 0.97; }
-      29%, 33%      { opacity: 0.02; }   /* FLASH */
-      35%, 55%      { opacity: 0.97; }
-      57%, 60%      { opacity: 0.02; }   /* FLASH */
-      62%, 64%      { opacity: 0.55; }   /* stutter */
-      66%, 70%      { opacity: 0.02; }   /* FLASH */
-      72%, 100%     { opacity: 0.97; }
+    /* Colored light floods in sync with neon pulses — paints through the comic stencil */
+    @keyframes neonGlow {
+      0%, 6%        { opacity: 0;    }
+      8%, 12%       { opacity: 1;    }   /* FLOOD */
+      14%, 27%      { opacity: 0;    }
+      29%, 33%      { opacity: 1;    }   /* FLOOD */
+      35%, 55%      { opacity: 0;    }
+      57%, 60%      { opacity: 1;    }   /* FLOOD */
+      62%, 64%      { opacity: 0.35; }   /* stutter */
+      66%, 70%      { opacity: 1;    }   /* FLOOD */
+      72%, 100%     { opacity: 0;    }
     }
     @media (max-width: 768px) {
       .why-neon-wrap { padding: 40px 20px; margin-bottom: 40px; }
@@ -688,6 +704,7 @@
   <section class="section section-warm">
     <div class="container">
       <div class="center why-neon-wrap reveal">
+        <div class="neon-comic-art" aria-hidden="true"></div>
         <span class="section-label">Why Tu Pastelito</span>
         <h2 class="section-title"><span class="neon-gold">Authentic.</span> <span class="neon-blue">Fresh.</span> <span class="neon-red">Venezuelan.</span></h2>
         <p class="section-sub">Real Venezuelan street food made with tradition, served in the heart of Dallas.</p>
