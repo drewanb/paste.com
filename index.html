@@ -283,6 +283,23 @@
       .catering-event-cards { grid-template-columns: repeat(2, 1fr) !important; }
     }
 
+    /* ── FEATURED CARDS ── */
+    .featured-section { background:#fff; padding:64px 24px; }
+    .featured-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:var(--max); margin:0 auto; }
+    @media(max-width:768px){ .featured-grid{ grid-template-columns:1fr; max-width:400px; } }
+    .feat-card { background:#FAF6F0; border-radius:16px; overflow:hidden; display:flex; flex-direction:column; }
+    .feat-card-img { width:100%; aspect-ratio:4/3; overflow:hidden; }
+    .feat-card-img img { width:100%; height:100%; object-fit:cover; transition:transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .feat-card:hover .feat-card-img img { transform:scale(1.06); }
+    .feat-card-body { padding:20px 20px 0; flex:1; }
+    .feat-card-body h3 { font-family:var(--ff-head); font-size:1.25rem; color:var(--dark); margin-bottom:8px; line-height:1.25; }
+    .feat-card-body p { font-size:0.88rem; color:var(--muted); line-height:1.65; }
+    .feat-card-actions { display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--border); margin-top:20px; }
+    .feat-action { display:flex; align-items:center; justify-content:center; gap:7px; padding:14px 8px; font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--dark); text-decoration:none; transition:background 0.2s ease, color 0.2s ease; cursor:pointer; border:none; background:transparent; font-family:var(--ff-body); }
+    .feat-action:first-child { border-right:1px solid var(--border); }
+    .feat-action:hover { background:var(--primary); color:#fff; }
+    .feat-action svg { flex-shrink:0; }
+
     /* ── TESTIMONIAL CAROUSEL ── */
     .carousel-outer { position:relative; overflow:hidden; margin-top:48px; padding-bottom:8px; }
     .carousel-track { display:flex; gap:24px; transition:transform 0.8s cubic-bezier(0.4,0,0.2,1); will-change:transform; }
@@ -399,6 +416,73 @@
       <p class="hero-sub">Venezuelan Street Food in Dallas, TX</p>
       <div class="hero-badge">Open Mon–Sun · 6:00 AM – 10:00 PM · Carryout Available</div>
     </div>
+    </div>
+  </section>
+
+  <!-- FEATURED ITEMS -->
+  <section class="featured-section">
+    <div class="featured-grid">
+
+      <div class="feat-card reveal">
+        <div class="feat-card-img">
+          <img src="assets/pastelito.png" alt="Empanadas venezolanas — Tu Pastelito Dallas" width="800" height="600" loading="lazy" decoding="async">
+        </div>
+        <div class="feat-card-body">
+          <h3>Golden Empanadas</h3>
+          <p>Crispy on the outside, juicy on the inside — seasoned chicken, beef, or cheese filling baked to perfection.</p>
+        </div>
+        <div class="feat-card-actions">
+          <a href="https://www.TuPastelitoDallas.com/order" class="feat-action">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Order Now
+          </a>
+          <a href="servicios.html" class="feat-action">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            See Menu
+          </a>
+        </div>
+      </div>
+
+      <div class="feat-card reveal">
+        <div class="feat-card-img">
+          <img src="assets/pabellon.png" alt="Pabellón criollo venezolano — Tu Pastelito Dallas" width="800" height="600" loading="lazy" decoding="async">
+        </div>
+        <div class="feat-card-body">
+          <h3>Pabellón Criollo</h3>
+          <p>Venezuela's national dish — shredded beef, black beans, white rice, and sweet fried plantains in one iconic plate.</p>
+        </div>
+        <div class="feat-card-actions">
+          <a href="https://www.TuPastelitoDallas.com/order" class="feat-action">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Order Now
+          </a>
+          <a href="servicios.html" class="feat-action">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            See Menu
+          </a>
+        </div>
+      </div>
+
+      <div class="feat-card reveal">
+        <div class="feat-card-img">
+          <img src="assets/pastelito-papa.webp" alt="Pastel del Papa venezolano — Tu Pastelito Dallas" width="800" height="600" loading="lazy" decoding="async">
+        </div>
+        <div class="feat-card-body">
+          <h3>Pastel del Papa</h3>
+          <p>A rich Venezuelan potato pastry, savory and comforting. One of our most beloved traditional dishes in Dallas.</p>
+        </div>
+        <div class="feat-card-actions">
+          <a href="https://www.TuPastelitoDallas.com/order" class="feat-action">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Order Now
+          </a>
+          <a href="servicios.html" class="feat-action">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            See Menu
+          </a>
+        </div>
+      </div>
+
     </div>
   </section>
 
