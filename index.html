@@ -334,8 +334,8 @@
     .menu-card:hover .menu-card-img img { transform: scale(1.12); }
 
     /* 2. Why icon — fills + unique animation per card */
-    .why-icon { transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease; }
-    .why-card:hover .why-icon { background: var(--primary); color: #fff; transform: scale(1.08); }
+    .why-icon { transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.35s ease; }
+    .why-card:hover .why-icon { background: var(--primary); color: #fff; transform: scale(1.08); box-shadow: 0 0 0 5px rgba(200,121,58,0.15), 0 0 0 10px rgba(200,121,58,0.06); }
     .why-icon svg { transition: none; }
 
     @keyframes iconBounce { 0%,100%{transform:translateY(0)} 30%{transform:translateY(-8px)} 60%{transform:translateY(3px)} 80%{transform:translateY(-3px)} }
@@ -377,6 +377,126 @@
     .footer-col ul a { position: relative; }
     .footer-col ul a::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1px; background:var(--primary); transition:width 0.25s ease; }
     .footer-col ul a:hover::after { width:100%; }
+
+    /* ── NEON SIGN — Why Tu Pastelito heading ── */
+    .why-neon-wrap {
+      background: #07070f;
+      border: 1px solid rgba(200,121,58,0.18);
+      border-radius: 24px;
+      padding: 56px 48px;
+      margin-bottom: 56px;
+      position: relative;
+      box-shadow:
+        0 0 0 1px rgba(200,121,58,0.06),
+        inset 0 0 80px rgba(200,121,58,0.05),
+        0 32px 80px rgba(0,0,0,0.35);
+    }
+    /* Ambient glow behind text */
+    .why-neon-wrap::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 55%; height: 70%;
+      background: radial-gradient(ellipse, rgba(200,121,58,0.13) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .why-neon-wrap .section-label,
+    .why-neon-wrap .section-title,
+    .why-neon-wrap .section-sub { position: relative; z-index: 1; }
+    /* Orange neon label */
+    .why-neon-wrap .section-label {
+      color: #ffb347;
+      text-shadow:
+        0 0 4px rgba(255,179,71,1),
+        0 0 10px rgba(255,179,71,0.85),
+        0 0 22px rgba(255,179,71,0.55);
+    }
+    /* Main neon title — white core, orange halo */
+    .why-neon-wrap .section-title {
+      color: #fff;
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      text-shadow:
+        0 0 5px rgba(255,255,255,1),
+        0 0 12px rgba(255,255,255,0.9),
+        0 0 26px rgba(200,121,58,1),
+        0 0 55px rgba(200,121,58,0.75),
+        0 0 95px rgba(200,121,58,0.45),
+        0 0 150px rgba(200,121,58,0.22);
+      animation: neonFlicker 7s ease-in-out infinite;
+    }
+    .why-neon-wrap .section-sub { color: rgba(255,255,255,0.48); }
+
+    @keyframes neonFlicker {
+      0%, 17%, 21%, 24%, 52%, 56%, 100% {
+        text-shadow:
+          0 0 5px rgba(255,255,255,1),
+          0 0 12px rgba(255,255,255,0.9),
+          0 0 26px rgba(200,121,58,1),
+          0 0 55px rgba(200,121,58,0.75),
+          0 0 95px rgba(200,121,58,0.45),
+          0 0 150px rgba(200,121,58,0.22);
+        color: #fff;
+      }
+      19%, 23%, 54% {
+        text-shadow: none;
+        color: rgba(255,255,255,0.45);
+      }
+    }
+    @media (max-width: 768px) {
+      .why-neon-wrap { padding: 40px 24px; margin-bottom: 40px; }
+      .why-neon-wrap .section-title { font-size: clamp(2rem, 8vw, 2.8rem); }
+    }
+
+    /* ── WHY SECTION — TEXTURE & CONNECTED ANIMATIONS ── */
+    /* Warm dot grid on both section-warm sections (Why + Reviews) */
+    .section-warm {
+      background-image: radial-gradient(circle, rgba(200,121,58,0.065) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    /* Card needs relative + overflow for edge streak */
+    .why-card { position: relative; overflow: hidden; }
+    /* Orange streak slides in from center on hover — top edge */
+    .why-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent 8%, rgba(200,121,58,0.6) 50%, transparent 92%);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.42s cubic-bezier(0.25,0.46,0.45,0.94);
+      pointer-events: none; z-index: 2;
+    }
+    .why-card:hover::before { transform: scaleX(1); }
+    /* Icon needs relative positioning */
+    .why-icon { position: relative; }
+    /* Spotlight: dim siblings when any card is hovered */
+    .why-grid:has(.why-card:hover) .why-card:not(:hover) {
+      opacity: 0.52;
+      transform: scale(0.97) !important;
+      filter: blur(0.25px);
+      transition: transform 0.35s ease, opacity 0.35s ease, filter 0.35s ease;
+    }
+    /* JS fallback class for browsers without :has() */
+    .why-card.sibling-dim {
+      opacity: 0.52 !important;
+      transform: scale(0.97) !important;
+      filter: blur(0.25px);
+    }
+    /* Strengthen hovered card — warm orange aura */
+    .why-card:hover {
+      transform: translateY(-8px) !important;
+      box-shadow:
+        0 0 0 1px rgba(200,121,58,0.18),
+        0 6px 18px rgba(200,121,58,0.2),
+        0 24px 56px rgba(200,121,58,0.12),
+        0 0 0 7px rgba(200,121,58,0.04);
+      border-color: rgba(200,121,58,0.15);
+    }
+    /* Alternating tilt entrance — cards arrive from opposite angles */
+    .why-card.reveal { transform: translateY(40px) rotate(-1.5deg); }
+    .why-card:nth-child(2).reveal, .why-card:nth-child(4).reveal { transform: translateY(40px) rotate(1.5deg); }
+    .why-card.reveal.visible { transform: translateY(0) rotate(0deg); }
 
     /* ── WHATSAPP FLOAT ── */
     .whatsapp-float { position: fixed; bottom: 28px; right: 28px; z-index: 9999; width: 58px; height: 58px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.45); transition: transform 0.25s ease, box-shadow 0.25s ease; text-decoration: none; }
@@ -500,10 +620,10 @@
   <!-- WHY US -->
   <section class="section section-warm">
     <div class="container">
-      <div class="center">
-        <span class="section-label reveal">Why Tu Pastelito</span>
-        <h2 class="section-title reveal">Authentic. Fresh. Venezuelan.</h2>
-        <p class="section-sub reveal">Real Venezuelan street food made with tradition, served in the heart of Dallas.</p>
+      <div class="center why-neon-wrap reveal">
+        <span class="section-label">Why Tu Pastelito</span>
+        <h2 class="section-title">Authentic. Fresh. Venezuelan.</h2>
+        <p class="section-sub">Real Venezuelan street food made with tradition, served in the heart of Dallas.</p>
       </div>
       <div class="why-grid stagger">
         <div class="why-card reveal">
@@ -964,6 +1084,23 @@
         });
 
         setTimeout(() => img.remove(), 1000);
+      });
+    })();
+  </script>
+
+  <!-- WHY CARD SPOTLIGHT — JS fallback for CSS :has() -->
+  <script>
+    (function () {
+      if (window.CSS && CSS.supports('selector(:has(*))')) return;
+      const cards = document.querySelectorAll('.why-card');
+      if (!cards.length) return;
+      cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          cards.forEach(c => { if (c !== card) c.classList.add('sibling-dim'); });
+        });
+        card.addEventListener('mouseleave', () => {
+          cards.forEach(c => c.classList.remove('sibling-dim'));
+        });
       });
     })();
   </script>
