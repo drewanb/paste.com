@@ -680,7 +680,7 @@
       hero.addEventListener('mousemove', (e) => {
         if (!ready || !video.duration) return;
         const rect = hero.getBoundingClientRect();
-        const progress = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        const progress = Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height));
         target = progress * video.duration;
         if (!pending) {
           pending = true;
