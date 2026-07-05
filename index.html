@@ -333,9 +333,20 @@
     .menu-card-img img { transition: transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94); }
     .menu-card:hover .menu-card-img img { transform: scale(1.12); }
 
-    /* 2. Why icon — fills with brand color on hover */
+    /* 2. Why icon — fills + unique animation per card */
     .why-icon { transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease; }
-    .why-card:hover .why-icon { background: var(--primary); color: #fff; transform: scale(1.1) rotate(-6deg); }
+    .why-card:hover .why-icon { background: var(--primary); color: #fff; transform: scale(1.08); }
+    .why-icon svg { transition: none; }
+
+    @keyframes iconBounce { 0%,100%{transform:translateY(0)} 30%{transform:translateY(-8px)} 60%{transform:translateY(3px)} 80%{transform:translateY(-3px)} }
+    @keyframes iconSpin   { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+    @keyframes iconWiggle { 0%,100%{transform:rotate(0deg)} 20%{transform:rotate(-18deg)} 50%{transform:rotate(16deg)} 75%{transform:rotate(-10deg)} }
+    @keyframes iconPop    { 0%{transform:scale(1) rotate(0)} 35%{transform:scale(1.4) rotate(18deg)} 65%{transform:scale(0.88) rotate(-8deg)} 100%{transform:scale(1) rotate(0)} }
+
+    .why-card:nth-child(1):hover .why-icon svg { animation: iconBounce 0.65s cubic-bezier(0.36,0.07,0.19,0.97); }
+    .why-card:nth-child(2):hover .why-icon svg { animation: iconSpin   0.7s  cubic-bezier(0.25,0.46,0.45,0.94); }
+    .why-card:nth-child(3):hover .why-icon svg { animation: iconWiggle 0.65s ease; }
+    .why-card:nth-child(4):hover .why-icon svg { animation: iconPop    0.55s ease; }
 
     /* 3. Review card — lift on hover + quote intensifies */
     .review-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
