@@ -281,6 +281,51 @@
       .catering-event-cards { grid-template-columns: repeat(2, 1fr) !important; }
     }
 
+    /* ── ANIMATION SUITE ── */
+
+    /* 1. Menu card — shimmer sweep + deeper zoom */
+    .menu-card { transition: transform 0.38s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.38s ease; }
+    .menu-card:hover { transform: translateY(-10px); box-shadow: 0 28px 64px rgba(0,0,0,0.16); }
+    .menu-card-img { position: relative; }
+    .menu-card-img::after { content:''; position:absolute; inset:0; background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,0.2) 50%,transparent 70%); transform:translateX(-120%); transition:transform 0.55s ease; pointer-events:none; }
+    .menu-card:hover .menu-card-img::after { transform:translateX(120%); }
+    .menu-card-img img { transition: transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .menu-card:hover .menu-card-img img { transform: scale(1.12); }
+
+    /* 2. Why icon — fills with brand color on hover */
+    .why-icon { transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease; }
+    .why-card:hover .why-icon { background: var(--primary); color: #fff; transform: scale(1.1) rotate(-6deg); }
+
+    /* 3. Review card — lift on hover + quote intensifies */
+    .review-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .review-card:hover { transform: translateY(-6px); box-shadow: 0 20px 56px rgba(0,0,0,0.11); }
+    .review-card:hover::before { opacity: 0.3; }
+
+    /* 4. Button shimmer sweep */
+    .btn { position: relative; overflow: hidden; }
+    .btn::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.22),transparent); transform:translateX(-100%); transition:transform 0.5s ease; pointer-events:none; }
+    .btn:hover::after { transform:translateX(100%); }
+
+    /* 5. Stats — glow pulse on hover */
+    .stat-item { transition: background 0.3s ease, transform 0.3s ease; cursor: default; }
+    .stat-item:hover { background: rgba(200,121,58,0.1); transform: scale(1.04); }
+
+    /* 6. Gallery — navy overlay + deeper zoom */
+    .gallery-item { position: relative; }
+    .gallery-item::after { content:''; position:absolute; inset:0; background:rgba(2,30,96,0.5); opacity:0; transition:opacity 0.35s ease; pointer-events:none; }
+    .gallery-item:hover::after { opacity:1; }
+    .gallery-item img { transition: transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .gallery-item:hover img { transform: scale(1.1); }
+
+    /* 7. Catering event mini-cards */
+    .catering-ev { transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease; }
+    .catering-ev:hover { transform: translateY(-5px); background: rgba(255,255,255,0.1) !important; border-color: rgba(200,121,58,0.6) !important; }
+
+    /* 8. Footer links — slide underline */
+    .footer-col ul a { position: relative; }
+    .footer-col ul a::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1px; background:var(--primary); transition:width 0.25s ease; }
+    .footer-col ul a:hover::after { width:100%; }
+
     /* ── WHATSAPP FLOAT ── */
     .whatsapp-float { position: fixed; bottom: 28px; right: 28px; z-index: 9999; width: 58px; height: 58px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.45); transition: transform 0.25s ease, box-shadow 0.25s ease; text-decoration: none; }
     .whatsapp-float:hover { transform: scale(1.12); box-shadow: 0 6px 28px rgba(37,211,102,0.65); }
@@ -511,19 +556,19 @@
         </div>
       </div>
       <div class="catering-event-cards">
-        <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:24px; text-align:center;">
+        <div class="catering-ev" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:24px; text-align:center;">
           <div style="margin-bottom:8px; color:#F5C518;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M4 20l2-8 6 4 6-4 2 8"/><circle cx="12" cy="6" r="2"/></svg></div>
           <div style="font-family:var(--ff-head); color:#fff; font-size:0.95rem;">Quinceañeras</div>
         </div>
-        <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:24px; text-align:center;">
+        <div class="catering-ev" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:24px; text-align:center;">
           <div style="margin-bottom:8px; color:#F5C518;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="7"/><polyline points="9 2 7 7 12 6 17 7 15 2"/><line x1="12" y1="7" x2="12" y2="7.01"/></svg></div>
           <div style="font-family:var(--ff-head); color:#fff; font-size:0.95rem;">Weddings</div>
         </div>
-        <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:24px; text-align:center;">
+        <div class="catering-ev" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:24px; text-align:center;">
           <div style="margin-bottom:8px; color:#F5C518;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
           <div style="font-family:var(--ff-head); color:#fff; font-size:0.95rem;">Corporate</div>
         </div>
-        <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:24px; text-align:center;">
+        <div class="catering-ev" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:24px; text-align:center;">
           <div style="margin-bottom:8px; color:#F5C518;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 00-2-2H6a2 2 0 00-2 2v8"/><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2 1 2 1"/><line x1="2" y1="21" x2="22" y2="21"/><line x1="7" y1="11" x2="7" y2="8"/><line x1="12" y1="11" x2="12" y2="6"/><line x1="17" y1="11" x2="17" y2="8"/><path d="M7 8a1 1 0 010-2 1 1 0 010 2z"/><path d="M12 6a1 1 0 010-2 1 1 0 010 2z"/><path d="M17 8a1 1 0 010-2 1 1 0 010 2z"/></svg></div>
           <div style="font-family:var(--ff-head); color:#fff; font-size:0.95rem;">Birthdays</div>
         </div>
@@ -672,12 +717,20 @@
       video.currentTime = 0;
       video.load();
 
+      const heroContent = hero.querySelector('.hero-content');
+
       window.addEventListener('scroll', () => {
-        if (!video.duration) return;
         const scrollable = hero.offsetHeight - window.innerHeight;
         const scrolled   = Math.max(0, window.scrollY - hero.offsetTop);
         const progress   = Math.min(scrolled / scrollable, 1);
-        video.currentTime = progress * video.duration;
+
+        if (video.duration) video.currentTime = progress * video.duration;
+
+        // Parallax: content drifts up + fades as you scroll through hero
+        if (heroContent) {
+          heroContent.style.transform = `translateY(${progress * -80}px)`;
+          heroContent.style.opacity   = Math.max(0, 1 - progress * 2.2);
+        }
       }, { passive: true });
     })();
   </script>
