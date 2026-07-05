@@ -444,11 +444,11 @@
     <div class="container">
       <div class="stats-grid stagger">
         <div class="stat-item reveal">
-          <div class="stat-num">16h</div>
+          <div class="stat-num" data-count="16" data-suffix="h">16h</div>
           <div class="stat-label">Open Daily</div>
         </div>
         <div class="stat-item reveal">
-          <div class="stat-num">7</div>
+          <div class="stat-num" data-count="7">7</div>
           <div class="stat-label">Days a Week</div>
         </div>
         <div class="stat-item reveal">
@@ -616,6 +616,34 @@
       }, { threshold: 0.12 });
 
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    })();
+  </script>
+
+  <!-- COUNTER ANIMATION -->
+  <script>
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      function animateCount(el, target, suffix, duration) {
+        const start = performance.now();
+        (function step(now) {
+          const p = Math.min((now - start) / duration, 1);
+          const ease = 1 - Math.pow(1 - p, 3); // easeOutCubic
+          el.textContent = Math.round(ease * target) + suffix;
+          if (p < 1) requestAnimationFrame(step);
+        })(start);
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          animateCount(el, +el.dataset.count, el.dataset.suffix || '', 1800);
+          observer.unobserve(el);
+        });
+      }, { threshold: 0.5 });
+
+      document.querySelectorAll('.stat-num[data-count]').forEach(el => observer.observe(el));
     })();
   </script>
 
