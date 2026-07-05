@@ -393,26 +393,26 @@
         inset 0 0 90px rgba(0,0,0,0.6),
         0 32px 80px rgba(0,0,0,0.45);
     }
-    /* Gradient border via pseudo */
+    /* Gradient border top→bottom: gold → blue → red (matches stacking order) */
     .why-neon-wrap::before {
       content: '';
       position: absolute;
       inset: -2px;
       border-radius: 26px;
-      background: linear-gradient(135deg, #FFD700 0%, #2255DD 50%, #CC1F2D 100%);
+      background: linear-gradient(to bottom, #FFD700 0%, #2255DD 50%, #CC1F2D 100%);
       z-index: -1;
-      opacity: 0.55;
+      opacity: 0.6;
     }
-    /* Tri-color ambient glow behind text */
+    /* Ambient glow — vertically positioned per word */
     .why-neon-wrap::after {
       content: '';
       position: absolute;
       inset: 0;
       border-radius: 24px;
       background:
-        radial-gradient(ellipse at 20% 50%, rgba(255,215,0,0.09) 0%, transparent 45%),
-        radial-gradient(ellipse at 50% 50%, rgba(34,85,221,0.09) 0%, transparent 45%),
-        radial-gradient(ellipse at 80% 50%, rgba(204,31,45,0.09) 0%, transparent 45%);
+        radial-gradient(ellipse at 50% 22%, rgba(255,215,0,0.12) 0%, transparent 42%),
+        radial-gradient(ellipse at 50% 52%, rgba(34,85,221,0.12) 0%, transparent 42%),
+        radial-gradient(ellipse at 50% 82%, rgba(204,31,45,0.14) 0%, transparent 42%);
       pointer-events: none;
       z-index: 0;
     }
@@ -420,7 +420,7 @@
     .why-neon-wrap .section-title,
     .why-neon-wrap .section-sub { position: relative; z-index: 1; }
 
-    /* Label — gold neon (matches "tu" in logo) */
+    /* Label — gold neon */
     .why-neon-wrap .section-label {
       color: #FFD700;
       text-shadow:
@@ -430,56 +430,65 @@
         0 0 48px rgba(255,215,0,0.3);
     }
 
-    /* Title base */
+    /* Title: stacked vertically, each word bigger than the last */
     .why-neon-wrap .section-title {
-      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      line-height: 1.15;
       animation: neonFlicker 7s ease-in-out infinite;
     }
 
-    /* Gold neon — "Authentic." (matches "tu") */
+    /* Gold — smallest (Authentic.) */
     .neon-gold {
       color: #fff;
+      font-size: clamp(1.5rem, 3.2vw, 2.6rem);
       text-shadow:
-        0 0 5px #fff,
-        0 0 12px #fff,
-        0 0 26px #FFD700,
-        0 0 55px #FFD700,
-        0 0 95px rgba(255,215,0,0.6),
-        0 0 150px rgba(255,215,0,0.3);
+        0 0 4px #fff,
+        0 0 9px #fff,
+        0 0 20px #FFD700,
+        0 0 40px #FFD700,
+        0 0 65px rgba(255,215,0,0.55),
+        0 0 100px rgba(255,215,0,0.25);
     }
-    /* Blue neon — "Fresh." (matches "Pastelito") */
+    /* Blue — medium (Fresh.) */
     .neon-blue {
       color: #fff;
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
       text-shadow:
         0 0 5px #fff,
         0 0 12px #fff,
-        0 0 26px #4488FF,
-        0 0 55px #2255DD,
+        0 0 28px #4488FF,
+        0 0 58px #2255DD,
         0 0 95px rgba(34,85,221,0.6),
-        0 0 150px rgba(34,85,221,0.3);
+        0 0 140px rgba(34,85,221,0.28);
     }
-    /* Red neon — "Venezuelan." (matches ".com" band) */
+    /* Red — largest (Venezuelan.) */
     .neon-red {
       color: #fff;
+      font-size: clamp(2.7rem, 6.2vw, 5rem);
       text-shadow:
-        0 0 5px #fff,
-        0 0 12px #fff,
-        0 0 26px #FF3344,
-        0 0 55px #CC1F2D,
-        0 0 95px rgba(204,31,45,0.6),
-        0 0 150px rgba(204,31,45,0.3);
+        0 0 7px #fff,
+        0 0 16px #fff,
+        0 0 36px #FF3344,
+        0 0 75px #CC1F2D,
+        0 0 125px rgba(204,31,45,0.6),
+        0 0 185px rgba(204,31,45,0.28);
     }
 
-    .why-neon-wrap .section-sub { color: rgba(255,255,255,0.45); }
+    .why-neon-wrap .section-sub { color: rgba(255,255,255,0.42); margin-top: 8px; }
 
     @keyframes neonFlicker {
       0%, 17%, 21%, 24%, 52%, 56%, 100% { opacity: 1; filter: brightness(1); }
-      19%, 23%                          { opacity: 0.55; filter: brightness(0.25); }
-      54%                               { opacity: 0.7;  filter: brightness(0.4); }
+      19%, 23%                          { opacity: 0.5; filter: brightness(0.22); }
+      54%                               { opacity: 0.65; filter: brightness(0.38); }
     }
     @media (max-width: 768px) {
       .why-neon-wrap { padding: 40px 20px; margin-bottom: 40px; }
-      .why-neon-wrap .section-title { font-size: clamp(1.9rem, 8vw, 2.8rem); }
+      .neon-gold { font-size: clamp(1.3rem, 5.5vw, 2rem); }
+      .neon-blue { font-size: clamp(1.7rem, 7vw, 2.6rem); }
+      .neon-red  { font-size: clamp(2.2rem, 9vw, 3.4rem); }
     }
 
     /* ── WHY SECTION — TEXTURE & CONNECTED ANIMATIONS ── */
