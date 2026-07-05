@@ -132,10 +132,10 @@
 
     /* ── BUTTONS ── */
     .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 6px; font-family: var(--ff-body); font-size: 1rem; font-weight: 600; cursor: pointer; transition: all var(--transition); border: none; white-space: nowrap; }
-    .btn-primary { background: var(--primary); color: #fff; }
-    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(200,121,58,0.35); }
-    .btn-outline-white { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.8); }
-    .btn-outline-white:hover { background: #fff; color: var(--primary); }
+    .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 1px 2px rgba(200,121,58,0.18), 0 4px 8px rgba(200,121,58,0.14), 0 9px 12px rgba(200,121,58,0.08), 0 17px 14px rgba(200,121,58,0.04), inset 0 2px 8px rgba(255,255,255,0.22); }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 4px 8px rgba(200,121,58,0.2), 0 12px 24px rgba(200,121,58,0.18), 0 20px 32px rgba(200,121,58,0.1), inset 0 2px 8px rgba(255,255,255,0.25); }
+    .btn-outline-white { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.8); box-shadow: 0 0 0 0.5px rgba(255,255,255,0.05), 0 4px 20px rgba(0,0,0,0.08); }
+    .btn-outline-white:hover { background: #fff; color: var(--primary); box-shadow: 0 4px 30px rgba(0,0,0,0.15); }
     .btn-outline-red { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
     .btn-outline-red:hover { background: var(--primary); color: #fff; transform: translateY(-2px); }
 
@@ -240,8 +240,10 @@
     .cta-banner h2 { font-family: var(--ff-head); font-size: clamp(1.8rem, 3.5vw, 2.6rem); color: #fff; margin-bottom: 14px; }
     .cta-banner p { color: rgba(255,255,255,0.85); font-size: 1.05rem; margin-bottom: 36px; }
     .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .btn-white { background: #fff; color: var(--primary); font-weight: 800; }
-    .btn-white:hover { background: var(--bg-warm); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,0.2); }
+    .btn-white { background: #fff; color: var(--primary); font-weight: 800; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.05), 0 4px 30px rgba(0,0,0,0.1); }
+    .btn-white:hover { background: var(--bg-warm); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.14), 0 12px 40px rgba(0,0,0,0.1); }
+    .btn-outline-red { display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:6px; font-family:var(--ff-body); font-size:0.9rem; font-weight:600; color:var(--primary); border:2px solid var(--primary); background:transparent; cursor:pointer; transition:all var(--transition); text-decoration:none; }
+    .btn-outline-red:hover { background:var(--primary); color:#fff; transform:translateY(-2px); }
 
     /* ── FOOTER ── */
     footer { background: var(--dark); color: rgba(255,255,255,0.8); padding: 64px 24px 28px; }
@@ -280,6 +282,28 @@
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .catering-event-cards { grid-template-columns: repeat(2, 1fr) !important; }
     }
+
+    /* ── TESTIMONIAL CAROUSEL ── */
+    .carousel-outer { position:relative; overflow:hidden; margin-top:48px; padding-bottom:8px; }
+    .carousel-track { display:flex; gap:24px; transition:transform 0.8s cubic-bezier(0.4,0,0.2,1); will-change:transform; }
+    .carousel-card { flex:0 0 340px; background:#fff; border-radius:32px; box-shadow:0 4px 16px rgba(0,0,0,0.08); padding:32px 28px; }
+    @media(max-width:768px){ .carousel-card{ flex:0 0 calc(100vw - 48px); } }
+    .carousel-stars { color:#f59e0b; font-size:1rem; letter-spacing:2px; margin-bottom:14px; }
+    .carousel-text { font-size:0.95rem; color:var(--text); line-height:1.75; font-style:italic; margin-bottom:20px; }
+    .carousel-author { font-weight:800; font-size:0.85rem; color:var(--primary); text-transform:uppercase; letter-spacing:1px; }
+    .carousel-controls { display:flex; gap:12px; justify-content:center; margin-top:28px; }
+    .carousel-btn { width:48px; height:48px; border-radius:50%; border:1px solid rgba(13,33,44,0.2); background:white; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.08); transition:all 0.2s ease; font-size:1.1rem; line-height:1; }
+    .carousel-btn:hover { background:var(--dark); color:#fff; border-color:var(--dark); transform:scale(1.05); }
+
+    /* ── BOTTOM NAV ── */
+    .bottom-nav { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); z-index:9998; background:#fff; border-radius:50px; padding:8px 10px 8px 22px; display:flex; align-items:center; gap:14px; box-shadow:0 0 0 0.5px rgba(0,0,0,0.08), 0 4px 30px rgba(0,0,0,0.14), 0 12px 60px rgba(0,0,0,0.08); white-space:nowrap; }
+    .bottom-nav-logo { font-family:var(--ff-head); font-weight:700; font-size:1rem; color:var(--dark); letter-spacing:-0.5px; }
+    .bottom-nav .btn { padding:10px 22px; font-size:0.88rem; }
+    @media(max-width:480px){ .bottom-nav{ bottom:16px; padding:6px 8px 6px 18px; } .bottom-nav-logo{ font-size:0.9rem; } }
+
+    /* ── MOUSE TRAIL (CTA) ── */
+    .cta-banner { position:relative; overflow:hidden; cursor:none; }
+    .trail-img { position:absolute; pointer-events:none; width:120px; height:90px; object-fit:cover; border-radius:12px; box-shadow:0 8px 32px rgba(0,0,0,0.25); z-index:5; transform-origin:center; transition:opacity 0.3s ease, transform 0.3s ease; }
 
     /* ── ANIMATION SUITE ── */
 
@@ -512,32 +536,44 @@
     </div>
   </section>
 
-  <!-- REVIEWS -->
-  <section class="section section-warm">
+  <!-- REVIEWS CAROUSEL -->
+  <section class="section section-warm" style="padding-bottom:64px;">
     <div class="container">
-      <div class="center">
-        <span class="section-label reveal">What People Say</span>
-        <h2 class="section-title reveal">Our Customers Love Us</h2>
-        <p class="section-sub reveal">Don't take our word for it — here's what our Dallas community has to say.</p>
-      </div>
-      <div class="reviews-grid stagger">
-        <div class="review-card reveal">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Super great Venezuelan food! Best in town! To go or eating in! This place hits hard!!!"</p>
-          <span class="review-author">— Benjamin R.</span>
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:8px;">
+        <div>
+          <span class="section-label reveal">What People Say</span>
+          <h2 class="section-title reveal" style="margin-bottom:0;">What Dallas <em style="font-style:normal;">loves</em></h2>
         </div>
-        <div class="review-card reveal">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"I always get the chicken and shredded beef empanadas. 😋 The staff is courteous and friendly. The food is delicious. Highly recommended!"</p>
-          <span class="review-author">— Mark F.</span>
-        </div>
-        <div class="review-card reveal">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"The best Venezuelan food in all of Dallas."</p>
-          <span class="review-author">— Ana F.</span>
+        <div class="reveal" style="display:flex; align-items:center; gap:8px; padding-bottom:4px;">
+          <span style="color:#f59e0b; font-size:1rem; letter-spacing:2px;">★★★★★</span>
+          <span style="font-size:0.85rem; font-weight:600; color:var(--muted);">Google 5/5</span>
         </div>
       </div>
-      <div style="text-align:center; margin-top: 40px;">
+      <div class="carousel-outer reveal" id="reviewCarousel">
+        <div class="carousel-track" id="carouselTrack">
+          <!-- reviews × 3 for infinite loop -->
+          <div class="carousel-card"><div class="carousel-stars">★★★★★</div><p class="carousel-text">"Super great Venezuelan food! Best in town! To go or eating in! This place hits hard!!!"</p><span class="carousel-author">— Benjamin R.</span></div>
+          <div class="carousel-card"><div class="carousel-stars">★★★★★</div><p class="carousel-text">"I always get the chicken and shredded beef empanadas. The staff is courteous and friendly. The food is delicious. Highly recommended!"</p><span class="carousel-author">— Mark F.</span></div>
+          <div class="carousel-card"><div class="carousel-stars">★★★★★</div><p class="carousel-text">"The best Venezuelan food in all of Dallas. Authentic flavors that take you straight to Venezuela."</p><span class="carousel-author">— Ana F.</span></div>
+          <div class="carousel-card"><div class="carousel-stars">★★★★★</div><p class="carousel-text">"The pastelitos are incredible — flaky, golden and perfectly seasoned. This is my weekly spot now. Cannot recommend enough!"</p><span class="carousel-author">— Sofia M.</span></div>
+          <div class="carousel-card"><div class="carousel-stars">★★★★★</div><p class="carousel-text">"Best breakfast in Far North Dallas! The morocho bread and tequeños are unlike anything I've had before. Pure comfort food."</p><span class="carousel-author">— Carlos V.</span></div>
+          <div class="carousel-card"><div class="carousel-stars">★★★★★</div><p class="carousel-text">"Super great Venezuelan food! Best in town! To go or eating in! This place hits hard!!!"</p><span class="carousel-author">— Benjamin R.</span></div>
+          <div class="carousel-card"><div class="carousel-stars">★★★★★</div><p class="carousel-text">"I always get the chicken and shredded beef empanadas. The staff is courteous and friendly. The food is delicious. Highly recommended!"</p><span class="carousel-author">— Mark F.</span></div>
+          <div class="carousel-card"><div class="carousel-stars">★★★★★</div><p class="carousel-text">"The best Venezuelan food in all of Dallas. Authentic flavors that take you straight to Venezuela."</p><span class="carousel-author">— Ana F.</span></div>
+          <div class="carousel-card"><div class="carousel-stars">★★★★★</div><p class="carousel-text">"The pastelitos are incredible — flaky, golden and perfectly seasoned. This is my weekly spot now. Cannot recommend enough!"</p><span class="carousel-author">— Sofia M.</span></div>
+          <div class="carousel-card"><div class="carousel-stars">★★★★★</div><p class="carousel-text">"Best breakfast in Far North Dallas! The morocho bread and tequeños are unlike anything I've had before. Pure comfort food."</p><span class="carousel-author">— Carlos V.</span></div>
+          <div class="carousel-card"><div class="carousel-stars">★★★★★</div><p class="carousel-text">"Super great Venezuelan food! Best in town! To go or eating in! This place hits hard!!!"</p><span class="carousel-author">— Benjamin R.</span></div>
+          <div class="carousel-card"><div class="carousel-stars">★★★★★</div><p class="carousel-text">"I always get the chicken and shredded beef empanadas. The staff is courteous and friendly. The food is delicious. Highly recommended!"</p><span class="carousel-author">— Mark F.</span></div>
+          <div class="carousel-card"><div class="carousel-stars">★★★★★</div><p class="carousel-text">"The best Venezuelan food in all of Dallas. Authentic flavors that take you straight to Venezuela."</p><span class="carousel-author">— Ana F.</span></div>
+          <div class="carousel-card"><div class="carousel-stars">★★★★★</div><p class="carousel-text">"The pastelitos are incredible — flaky, golden and perfectly seasoned. This is my weekly spot now. Cannot recommend enough!"</p><span class="carousel-author">— Sofia M.</span></div>
+          <div class="carousel-card"><div class="carousel-stars">★★★★★</div><p class="carousel-text">"Best breakfast in Far North Dallas! The morocho bread and tequeños are unlike anything I've had before. Pure comfort food."</p><span class="carousel-author">— Carlos V.</span></div>
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="prevBtn" aria-label="Previous review">&#8592;</button>
+        <button class="carousel-btn" id="nextBtn" aria-label="Next review">&#8594;</button>
+      </div>
+      <div style="text-align:center; margin-top:32px;">
         <a href="https://www.google.com/search?q=Tu+Pastelito+Dallas+TX" target="_blank" rel="noopener noreferrer" class="btn btn-outline-red">Leave a Review on Google</a>
       </div>
     </div>
@@ -620,6 +656,12 @@
       <p><a href="tel:2143979857" style="color:rgba(255,255,255,0.4)">(214) 397-9857</a></p>
     </div>
   </footer>
+
+  <!-- BOTTOM NAV -->
+  <div class="bottom-nav" id="bottomNav">
+    <span class="bottom-nav-logo">Tu Pastelito</span>
+    <a href="https://www.TuPastelitoDallas.com/order" class="btn btn-primary">Order Online</a>
+  </div>
 
   <!-- WhatsApp Float Button -->
   <a href="https://wa.me/12143979857" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat with us on WhatsApp">
@@ -732,6 +774,106 @@
           heroContent.style.opacity   = Math.max(0, 1 - progress * 2.2);
         }
       }, { passive: true });
+    })();
+  </script>
+
+  <!-- TESTIMONIAL CAROUSEL JS -->
+  <script>
+    (function () {
+      const track = document.getElementById('carouselTrack');
+      if (!track) return;
+      const cards = track.querySelectorAll('.carousel-card');
+      const total = cards.length; // 15
+      const perSet = 5;
+      let current = perSet; // start at second copy
+      let timer;
+      let transitioning = false;
+
+      function cardWidth() {
+        return cards[0].getBoundingClientRect().width + 24; // card + gap
+      }
+
+      function goTo(index, animate) {
+        if (animate === false) track.style.transition = 'none';
+        else track.style.transition = 'transform 0.8s cubic-bezier(0.4,0,0.2,1)';
+        track.style.transform = `translateX(-${index * cardWidth()}px)`;
+        current = index;
+      }
+
+      // Init position silently
+      goTo(perSet, false);
+
+      track.addEventListener('transitionend', () => {
+        transitioning = false;
+        if (current >= total - perSet) goTo(perSet, false);
+        if (current <= 0)             goTo(total - perSet * 2, false);
+      });
+
+      function next() {
+        if (transitioning) return;
+        transitioning = true;
+        goTo(current + 1, true);
+      }
+      function prev() {
+        if (transitioning) return;
+        transitioning = true;
+        goTo(current - 1, true);
+      }
+
+      document.getElementById('nextBtn').addEventListener('click', () => { next(); resetTimer(); });
+      document.getElementById('prevBtn').addEventListener('click', () => { prev(); resetTimer(); });
+
+      function startTimer() { timer = setInterval(next, 3000); }
+      function resetTimer() { clearInterval(timer); startTimer(); }
+
+      const outer = document.getElementById('reviewCarousel');
+      outer.addEventListener('mouseenter', () => clearInterval(timer));
+      outer.addEventListener('mouseleave', startTimer);
+
+      startTimer();
+    })();
+  </script>
+
+  <!-- MOUSE TRAIL JS -->
+  <script>
+    (function () {
+      const cta = document.querySelector('.cta-banner');
+      if (!cta) return;
+      const imgs = [
+        'assets/pastelito.png','assets/pabellon.png','assets/pastelito-papa.webp',
+        'assets/pan-morocho.jpg','assets/mucho-mas.png'
+      ];
+      let lastSpawn = 0;
+
+      cta.addEventListener('mousemove', (e) => {
+        const now = Date.now();
+        if (now - lastSpawn < 80) return;
+        lastSpawn = now;
+
+        const rect = cta.getBoundingClientRect();
+        const img = document.createElement('img');
+        img.src = imgs[Math.floor(Math.random() * imgs.length)];
+        img.className = 'trail-img';
+        const rot = (Math.random() - 0.5) * 20;
+        img.style.cssText = `
+          left:${e.clientX - rect.left - 60}px;
+          top:${e.clientY - rect.top - 45}px;
+          transform:rotate(${rot}deg) scale(1);
+          opacity:1;
+        `;
+        cta.appendChild(img);
+
+        // Fade out + shrink
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            img.style.transition = 'opacity 0.9s ease, transform 0.9s ease';
+            img.style.opacity = '0';
+            img.style.transform = `rotate(${rot}deg) scale(0.85)`;
+          }, 80);
+        });
+
+        setTimeout(() => img.remove(), 1000);
+      });
     })();
   </script>
 
