@@ -380,17 +380,17 @@
 
     /* ── NEON SIGN — Why Tu Pastelito heading ── */
     .why-neon-wrap {
-      background: #06060e;
+      background:
+        linear-gradient(rgba(4,4,12,0.78), rgba(4,4,12,0.78)),
+        url('assets/banner-catering.png') center/cover no-repeat;
       border-radius: 24px;
       padding: 56px 48px;
       margin-bottom: 56px;
       position: relative;
-      /* Gradient border: logo gold → blue → red */
       border: 2px solid transparent;
       background-clip: padding-box;
       box-shadow:
-        0 0 0 2px transparent,
-        inset 0 0 90px rgba(0,0,0,0.6),
+        inset 0 0 90px rgba(0,0,0,0.5),
         0 32px 80px rgba(0,0,0,0.45);
     }
     /* Gradient border top→bottom: gold → blue → red (matches stacking order) */
